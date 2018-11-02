@@ -1,17 +1,53 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>RutCúcuta</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
+
+      <h2>&nbsp;&nbsp;Menú</h2>
+      <hr>
+
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+        
+        <br>
+              <ng-container *ngIf="p.title==='Home'; else elseTemplate">
+                  <ion-icon md="md-home"></ion-icon> &nbsp;&nbsp;	{{p.title}}
+              </ng-container>
+              <ng-template #elseTemplate>
+                  <ng-container *ngIf="p.title==='Mis Rutas'; else elseTemplate">
+                      <ion-icon md="md-locate"></ion-icon>&nbsp;&nbsp;{{p.title}}
+                  </ng-container>
+                  <ng-template #elseTemplate>
+                      <ng-container *ngIf="p.title==='Nueva Ruta'; else elseTemplate">
+                          <ion-icon md="md-bus"></ion-icon>&nbsp;&nbsp; {{p.title}}
+                      </ng-container>
+                      <ng-template #elseTemplate>
+                          <ng-container *ngIf="p.title==='Cambiar Clave'; else elseTemplate">
+                              <ion-icon md="md-key"></ion-icon> &nbsp;&nbsp;{{p.title}}
+                          </ng-container>
+                          <ng-template #elseTemplate>
+                              <ion-icon md="md-notifications"></ion-icon> &nbsp;&nbsp;{{p.title}}
+                          </ng-template>
+                      </ng-template>
+                  </ng-template>
+              </ng-template>
       </button>
     </ion-list>
   </ion-content>
+
+  <ion-footer>
+      
+      <ion-toolbar>
+          
+          <button style="display:block;margin:auto" menuClose  ion-button color="secondary" (click)="salir()" clear>Cerrar Sesión</button>
+        
+        </ion-toolbar>
+  </ion-footer>
+  
 
 </ion-menu>
 
